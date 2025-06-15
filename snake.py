@@ -2,30 +2,28 @@ import pygame
 import time
 import random
 
-# Initialize pygame
+
 pygame.init()
 
-# Screen size
+
 width = 600
 height = 400
 
-# Colors
+
 white = (255, 255, 255)
 black = (0, 0, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
 
-# Snake block size
 block_size = 10
 
-# Font
+
 font = pygame.font.SysFont("bahnschrift", 25)
 
-# FPS controller
 clock = pygame.time.Clock()
 
-# Game window
+
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Snake Game")
 
@@ -37,7 +35,7 @@ def game_loop():
     game_over = False
     game_close = False
     
-    # Initial position
+   
     x = width / 2
     y = height / 2
     
@@ -55,9 +53,9 @@ def game_loop():
     
     while not game_over:
         while game_close:
-            screen.fill(black)
+            # screen.fill(black)
             message = font.render("Game Over! Press C to Play Again or Q to Quit", True, red)
-            screen.blit(message, [width / 6, height / 3])
+            screen.blit(message, [width / 10, height / 3])
             pygame.display.update()
             
             for event in pygame.event.get():
