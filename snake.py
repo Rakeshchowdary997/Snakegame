@@ -39,21 +39,18 @@ def game_loop():
     x = width / 2
     y = height / 2
     
-    # Movement
     x_change = 0
     y_change = 0
     
-    # Snake body
     snake_list = []
     snake_length = 1
     
-    # Food position
     food_x = random.randrange(0, width - block_size, block_size)
     food_y = random.randrange(0, height - block_size, block_size)
     
     while not game_over:
         while game_close:
-            # screen.fill(black)
+
             message = font.render("Game Over! Press C to Play Again or Q to Quit", True, red)
             screen.blit(message, [width / 10, height / 3])
             pygame.display.update()
@@ -83,18 +80,15 @@ def game_loop():
                     y_change = block_size
                     x_change = 0
         
-        # Boundary collision
         if x >= width or x < 0 or y >= height or y < 0:
             game_close = True
         
         x += x_change
         y += y_change
-        screen.fill(black)
-        
-        # Draw food
+        screen.fill(black)   
+
         pygame.draw.rect(screen, red, [food_x, food_y, block_size, block_size])
         
-        # Snake head
         snake_head = []
         snake_head.append(x)
         snake_head.append(y)
@@ -102,25 +96,22 @@ def game_loop():
         
         if len(snake_list) > snake_length:
             del snake_list[0]
-        
-        # Check for self collision
+
         for segment in snake_list[:-1]:
             if segment == snake_head:
                 game_close = True
         
         draw_snake(block_size, snake_list)
         pygame.display.update()
-        
-        # Food collision
+  
         if x == food_x and y == food_y:
             food_x = random.randrange(0, width - block_size, block_size)
             food_y = random.randrange(0, height - block_size, block_size)
             snake_length += 1
         
-        clock.tick(10)  # Snake speed
+        clock.tick(10)  
     
     pygame.quit()
     quit()
 
-# Run the game
 game_loop()
